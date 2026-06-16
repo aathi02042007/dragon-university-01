@@ -1,10 +1,23 @@
-﻿# -*- coding: utf-8 -*-
-# TODO: Implement routes for requests module
+﻿from fastapi import APIRouter
 
-# from fastapi import APIRouter, Depends, HTTPException, status
-# router = APIRouter()
+router = APIRouter()
 
-# @router.get('/')
-# def get_all():
-#     raise HTTPException(status_code=501, detail='Not Implemented')
+@router.post("/")
+def create_request():
+    pass
 
+@router.get("/")
+def get_all_requests():
+    pass
+
+@router.get("/{id}")
+def get_request_by_id(id: int):
+    pass
+
+@router.put("/{id}/status")
+def update_status(id: int, status: str):
+    pass
+
+@router.delete("/{id}")
+def delete_request(id:int):
+    pass

@@ -1,10 +1,23 @@
-﻿# -*- coding: utf-8 -*-
-# TODO: Implement routes for marks module
+﻿from fastapi import APIRouter
 
-# from fastapi import APIRouter, Depends, HTTPException, status
-# router = APIRouter()
+router = APIRouter()
 
-# @router.get('/')
-# def get_all():
-#     raise HTTPException(status_code=501, detail='Not Implemented')
+@router.post("/")
+def create_marks():
+    pass
 
+@router.get("/")
+def get_all_marks():
+    pass
+
+@router.get("/{student_id}")
+def get_marks_by_student(student_id: str):
+    pass
+
+@router.put("/{id}")
+def update_marks(id: int):
+    pass
+
+@router.delete("/{id}")
+def delete_marks(id: int):
+    pass
