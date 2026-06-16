@@ -1,4 +1,2 @@
-﻿from sqlalchemy.orm import DeclarativeBase
+﻿# TODO: Define declarative base class for SQLAlchemy models
 
-class Base(DeclarativeBase):
-    pass
