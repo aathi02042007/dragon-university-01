@@ -1,12 +1,6 @@
-from sqlalchemy import (
-    Column,
-    Integer,
-    String,
-    ForeignKey
-)
-
+from sqlalchemy import Column,Integer,String,ForeignKey
 from app.database.base import Base
-
+from sqlalchemy.orm import relationship
 
 class Subject(Base):
 
@@ -41,4 +35,11 @@ class Subject(Base):
 
     semester = Column(
         Integer
+    )
+    department = relationship(
+
+    "Department",
+
+    back_populates="subjects"
+    
     )

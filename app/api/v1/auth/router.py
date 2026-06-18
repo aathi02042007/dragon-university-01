@@ -6,6 +6,7 @@ from app.core.security import create_access_token
 from app.schemas.user import UserLogin
 from app.core.security import create_access_token,verify_password
 from app.core.dependencies import get_current_user
+from app.services.auth_service import login_user
 
 
 router = APIRouter()
@@ -26,38 +27,20 @@ def login(
     db: Session = Depends(get_db)
 ):
 
-    user = get_user_by_email(
+    token = login_user(
         db,
-
-        data.email
+        data.email,
+        data.password
     )
 
-    if not user:
-
+    if token is None:
         raise HTTPException(
             status_code=401,
-
-            detail="User not found"
-        )
-    if not verify_password(
-        data.password,
-
-        user.password
-    ):
-
+            detail="User not found")
+    if token is False:
         raise HTTPException(
-
             status_code=401,
-
-            detail="Incorrect password"
-            
-        )
-
-    token = create_access_token(
-        {
-            "sub": user.email
-        }
-    )
+            detail="Invalid password")
 
     return {
 

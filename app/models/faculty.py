@@ -1,7 +1,6 @@
 ﻿from sqlalchemy import Column,Integer,String,ForeignKey
-
 from app.database.base import Base
-
+from sqlalchemy.orm import relationship
 
 class Faculty(Base):
 
@@ -44,4 +43,10 @@ class Faculty(Base):
 
     contact_email = Column(
         String(100)
+    )
+    department = relationship(
+
+    "Department",
+
+    back_populates="faculty"
     )

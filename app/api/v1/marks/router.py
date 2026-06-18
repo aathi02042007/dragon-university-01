@@ -1,11 +1,8 @@
 ﻿from fastapi import APIRouter, Depends
-
 from sqlalchemy.orm import Session
-
 from app.database.session import get_db
-
 from app.repositories.mark_repo import get_all_marks
-
+from app.services.mark_service import fetch_all_marks
 
 router = APIRouter()
 
@@ -17,6 +14,6 @@ def all_marks(
 
 ):
 
-    return get_all_marks(
+    return fetch_all_marks(
         db
     )

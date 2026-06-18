@@ -1,13 +1,8 @@
 ﻿from fastapi import APIRouter, Depends
-
 from sqlalchemy.orm import Session
-
 from app.database.session import get_db
-
-from app.repositories.department_repo import (
-    get_all_departments
-)
-
+from app.repositories.department_repo import get_all_departments
+from app.services.department_service import fetch_all_departments
 
 router = APIRouter()
 
@@ -19,6 +14,6 @@ def all_departments(
 
 ):
 
-    return get_all_departments(
+    return fetch_all_departments(
         db
     )

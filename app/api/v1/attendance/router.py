@@ -1,17 +1,8 @@
-﻿from fastapi import (
-    APIRouter,
-
-    Depends
-)
-
+﻿from fastapi import APIRouter,Depends
 from sqlalchemy.orm import Session
-
 from app.database.session import get_db
-
-from app.repositories.attendance_repo import (
-    get_all_attendance
-)
-
+from app.repositories.attendance_repo import get_all_attendance
+from app.services.attendance_service import fetch_all_attendance
 router = APIRouter()
 
 
@@ -22,6 +13,6 @@ def all_attendance(
 
 ):
 
-    return get_all_attendance(
+    return fetch_all_attendance(
         db
     )

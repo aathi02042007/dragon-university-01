@@ -1,16 +1,8 @@
-﻿from fastapi import (
-    APIRouter,
-
-    Depends
-)
-
+﻿from fastapi import APIRouter,Depends
 from sqlalchemy.orm import Session
-
 from app.database.session import get_db
-
-from app.repositories.student_repo import (
-    get_all_students
-)
+from app.repositories.student_repo import get_all_students
+from app.services.student_service import fetch_all_students
 
 router = APIRouter()
 
@@ -22,6 +14,6 @@ def all_students(
 
 ):
 
-    return get_all_students(
+    return fetch_all_students(
         db
     )

@@ -1,12 +1,6 @@
-﻿from sqlalchemy import (
-    Column,
-    Integer,
-    String,
-    Date,
-    ForeignKey
-)
-
+﻿from sqlalchemy import Column,Integer,String,Date,ForeignKey
 from app.database.base import Base
+from sqlalchemy.orm import relationship
 
 
 class Student(Base):
@@ -73,4 +67,11 @@ class Student(Base):
 
     parent_phone = Column(
         String(15)
+    )
+    department = relationship(
+
+    "Department",
+
+    back_populates="students"
+    
     )
