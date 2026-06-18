@@ -1,10 +1,27 @@
-﻿# -*- coding: utf-8 -*-
-# TODO: Implement routes for admissions module
+﻿from fastapi import (
+    APIRouter,
 
-# from fastapi import APIRouter, Depends, HTTPException, status
-# router = APIRouter()
+    Depends
+)
 
-# @router.get('/')
-# def get_all():
-#     raise HTTPException(status_code=501, detail='Not Implemented')
+from sqlalchemy.orm import Session
 
+from app.database.session import get_db
+
+from app.repositories.admission_repo import (
+    get_all_admissions
+)
+
+router = APIRouter()
+
+
+@router.get("/")
+def all_admissions(
+
+    db: Session = Depends(get_db)
+
+):
+
+    return get_all_admissions(
+        db
+    )

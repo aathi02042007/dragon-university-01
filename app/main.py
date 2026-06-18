@@ -4,11 +4,51 @@ from app.api.v1.departments.router import router as department_router
 from app.api.v1.faculty.router import router as faculty_router
 from app.api.v1.students.router import router as student_router
 from app.api.v1.subjects.router import router as subject_router
-
+from app.api.v1.attendance.router import router as attendance_router
+from app.api.v1.marks.router import router as marks_router
+from app.api.v1.admissions.router import router as admissions_router
+from app.api.v1.requests.router import router as requests_router
+from app.api.v1.notifications.router import router as notifications_router
 
 
 app = FastAPI(
     title="Dragon ERP Backend"
+)
+app.include_router(
+
+notifications_router,
+
+prefix="/notifications",
+
+tags=["Notifications"]
+
+)
+app.include_router(
+
+requests_router,
+
+prefix="/requests",
+
+tags=["Requests"]
+
+)
+app.include_router(
+
+admissions_router,
+
+prefix="/admissions",
+
+tags=["Admissions"]
+
+)
+app.include_router(
+
+marks_router,
+
+prefix="/marks",
+
+tags=["Marks"]
+
 )
 app.include_router(
     auth_router,
@@ -49,6 +89,15 @@ subject_router,
 prefix="/subjects",
 
 tags=["Subjects"]
+
+)
+app.include_router(
+
+attendance_router,
+
+prefix="/attendance",
+
+tags=["Attendance"]
 
 )
 @app.get("/")

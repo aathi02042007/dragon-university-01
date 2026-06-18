@@ -1,10 +1,22 @@
-﻿# -*- coding: utf-8 -*-
-# TODO: Implement routes for marks module
+﻿from fastapi import APIRouter, Depends
 
-# from fastapi import APIRouter, Depends, HTTPException, status
-# router = APIRouter()
+from sqlalchemy.orm import Session
 
-# @router.get('/')
-# def get_all():
-#     raise HTTPException(status_code=501, detail='Not Implemented')
+from app.database.session import get_db
 
+from app.repositories.mark_repo import get_all_marks
+
+
+router = APIRouter()
+
+
+@router.get("/")
+def all_marks(
+
+    db: Session = Depends(get_db)
+
+):
+
+    return get_all_marks(
+        db
+    )
