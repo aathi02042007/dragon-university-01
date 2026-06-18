@@ -1,6 +1,11 @@
 from fastapi import FastAPI
-
 from app.api.v1.auth.router import router as auth_router
+from app.api.v1.departments.router import router as department_router
+from app.api.v1.faculty.router import router as faculty_router
+from app.api.v1.students.router import router as student_router
+from app.api.v1.subjects.router import router as subject_router
+
+
 
 app = FastAPI(
     title="Dragon ERP Backend"
@@ -11,6 +16,40 @@ app.include_router(
     prefix="/auth",
 
     tags=["Authentication"]
+)
+app.include_router(
+    department_router,
+
+    prefix="/departments",
+
+    tags=["Departments"]
+)
+app.include_router(
+
+faculty_router,
+
+prefix="/faculty",
+
+tags=["Faculty"]
+
+)
+app.include_router(
+
+student_router,
+
+prefix="/students",
+
+tags=["Students"]
+
+)
+app.include_router(
+
+subject_router,
+
+prefix="/subjects",
+
+tags=["Subjects"]
+
 )
 @app.get("/")
 def root():
