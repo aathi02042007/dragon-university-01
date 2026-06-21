@@ -1,10 +1,19 @@
-﻿# -*- coding: utf-8 -*-
-# TODO: Implement routes for departments module
+﻿from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from app.database.session import get_db
+from app.repositories.department_repo import get_all_departments
+from app.services.department_service import fetch_all_departments
 
-# from fastapi import APIRouter, Depends, HTTPException, status
-# router = APIRouter()
+router = APIRouter()
 
-# @router.get('/')
-# def get_all():
-#     raise HTTPException(status_code=501, detail='Not Implemented')
 
+@router.get("/")
+def all_departments(
+
+    db: Session = Depends(get_db)
+
+):
+
+    return fetch_all_departments(
+        db
+    )
