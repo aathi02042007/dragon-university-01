@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from app.repositories.admission_repo import AdmissionRepository
-from app.models.admission_request import AdmissionReqSchema
+from app.models.admission_request import AdmissionReq
 
 
 class AdmissionService:
@@ -13,7 +13,7 @@ class AdmissionService:
     def apply_admission(
         self,
         db: Session,
-        admission: AdmissionReqSchema
+        admission: AdmissionReq
     ):
 
         try:
@@ -57,7 +57,7 @@ class AdmissionService:
         self,
         db: Session,
         admission_id: int,
-        admission:AdmissionReqSchema
+        admission:AdmissionReq
     ):
 
         try:

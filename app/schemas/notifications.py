@@ -1,6 +1,11 @@
 from pydantic import BaseModel
 
+
 class NotificationSchema(BaseModel):
-    user_id: int
+    title: str
     message: str
-    is_read: bool = False
+    receiver_id: int
+
+
+class NotificationStatusSchema(BaseModel):
+    is_read: str

@@ -1,10 +1,10 @@
 from sqlalchemy.orm import Session
-from app.models.admission_request import AdmissionReqSchema
+from app.models.admission_request import AdmissionReq
 from sqlalchemy.exc import SQLAlchemyError
 
 class AdmissionRepository:
     # admissions create pana
-    def create_admission(self, db: Session, admission: AdmissionReqSchema):
+    def create_admission(self, db: Session, admission: AdmissionReq):
         try:
             db.add(admission)
             db.commit()
@@ -16,10 +16,10 @@ class AdmissionRepository:
             db.rollback()
             raise e
     # admission get pana
-    def get_all_admissions(self, db: Session,admissions:AdmissionReqSchema):
+    def get_all_admissions(self, db: Session,admissions:AdmissionReq):
 
         try:
-            admissions = db.query(AdmissionReqSchema).all()
+            admissions = db.query(AdmissionReq).all()
             return admissions
         
         except SQLAlchemyError as e:
@@ -30,13 +30,13 @@ class AdmissionRepository:
         self,
         db: Session,
         admission_id: int,
-        admission:AdmissionReqSchema
+        admission:AdmissionReq
     ):
         try:
             admission = db.query(
-                AdmissionReqSchema
+                AdmissionReq
             ).filter(
-                AdmissionReqSchema.id == admission_id
+                AdmissionReq.id == admission_id
             ).first()
 
             if not admission:
@@ -57,7 +57,7 @@ class AdmissionRepository:
         db: Session,
         admission_id: int,
         status: str,
-        admission:AdmissionReqSchema
+        admission:AdmissionReq
     ):
         
         try:
@@ -83,7 +83,7 @@ class AdmissionRepository:
     def delete_admission(
     self,
     db: Session,
-    admission_id: int,admission:AdmissionReqSchema):
+    admission_id: int,admission:AdmissionReq):
         try:
             admission = self.get_admission_by_id(
                 db,
