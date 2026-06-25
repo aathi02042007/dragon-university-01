@@ -1,10 +1,10 @@
 from sqlalchemy.orm import Session
-from app.models.admission_request import AdmissionRequest
+from app.models.admission_request import AdmissionReqSchema
 from sqlalchemy.exc import SQLAlchemyError
 
 class AdmissionRepository:
     # admissions create pana
-    def create_admission(self, db: Session, admission: AdmissionRequest):
+    def create_admission(self, db: Session, admission: AdmissionReqSchema):
         try:
             db.add(admission)
             db.commit()
@@ -16,10 +16,10 @@ class AdmissionRepository:
             db.rollback()
             raise e
     # admission get pana
-    def get_all_admissions(self, db: Session):
+    def get_all_admissions(self, db: Session,admissions:AdmissionReqSchema):
 
         try:
-            admissions = db.query(AdmissionRequest).all()
+            admissions = db.query(AdmissionReqSchema).all()
             return admissions
         
         except SQLAlchemyError as e:
@@ -29,13 +29,14 @@ class AdmissionRepository:
     def get_admission_by_id(
         self,
         db: Session,
-        admission_id: int
+        admission_id: int,
+        admission:AdmissionReqSchema
     ):
         try:
             admission = db.query(
-                AdmissionRequest
+                AdmissionReqSchema
             ).filter(
-                AdmissionRequest.id == admission_id
+                AdmissionReqSchema.id == admission_id
             ).first()
 
             if not admission:
@@ -55,7 +56,8 @@ class AdmissionRepository:
         self,
         db: Session,
         admission_id: int,
-        status: str
+        status: str,
+        admission:AdmissionReqSchema
     ):
         
         try:
@@ -81,7 +83,7 @@ class AdmissionRepository:
     def delete_admission(
     self,
     db: Session,
-    admission_id: int):
+    admission_id: int,admission:AdmissionReqSchema):
         try:
             admission = self.get_admission_by_id(
                 db,
@@ -99,3 +101,4 @@ class AdmissionRepository:
             raise Exception(
                 f"Database Error: {str(e)}"
             )
+
