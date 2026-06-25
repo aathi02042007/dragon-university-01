@@ -6,7 +6,7 @@ import decimal
 
 
 # addmission values get pana
-class AdmissionRequestSchema(session):
+class AdmissionReqSchema(session):
     name: str = Field(min_length=3, max_length=50)
     Email: EmailStr
     Phone: str = Field(min_length=10, max_length=15)
