@@ -1,3 +1,13 @@
+from app.models.admission import AdmissionRequest
+
+
+def get_all_admissions(
+    db
+):
+
+    return db.query(
+        AdmissionRequest
+    ).all()
 from sqlalchemy.orm import Session
 from app.models.admission_request import AdmissionReq
 from sqlalchemy.exc import SQLAlchemyError

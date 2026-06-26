@@ -1,10 +1,19 @@
-﻿# -*- coding: utf-8 -*-
-# TODO: Implement routes for students module
+﻿from fastapi import APIRouter,Depends
+from sqlalchemy.orm import Session
+from app.database.session import get_db
+from app.repositories.student_repo import get_all_students
+from app.services.student_service import fetch_all_students
 
-# from fastapi import APIRouter, Depends, HTTPException, status
-# router = APIRouter()
+router = APIRouter()
 
-# @router.get('/')
-# def get_all():
-#     raise HTTPException(status_code=501, detail='Not Implemented')
 
+@router.get("/")
+def all_students(
+
+    db: Session = Depends(get_db)
+
+):
+
+    return fetch_all_students(
+        db
+    )

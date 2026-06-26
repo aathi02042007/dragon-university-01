@@ -1,4 +1,31 @@
-﻿from fastapi import APIRouter
+from fastapi import (
+    APIRouter,
+
+    Depends
+)
+
+from sqlalchemy.orm import Session
+
+from app.database.session import get_db
+
+from app.repositories.admission_repo import (
+    get_all_admissions
+)
+
+router = APIRouter()
+
+
+@router.get("/")
+def all_admissions(
+
+    db: Session = Depends(get_db)
+
+):
+
+    return get_all_admissions(
+        db
+    )
+from fastapi import APIRouter
 from sqlalchemy.orm import Session
 from fastapi import Depends
 from app.schemas.admission_request import AdmissionRequestSchema, AdmissionResponseSchema

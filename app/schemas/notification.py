@@ -1,17 +1,15 @@
 from pydantic import BaseModel
 
 
-class SubjectResponse(
+class NotificationResponse(
     BaseModel
 ):
 
     id: int
 
-    subject_code: str
+    message: str
 
-    subject_name: str
-
-    semester: int
+    is_read: bool
 
     class Config:
 

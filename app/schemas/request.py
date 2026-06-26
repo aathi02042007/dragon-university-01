@@ -1,17 +1,15 @@
 from pydantic import BaseModel
 
 
-class SubjectResponse(
+class RequestResponse(
     BaseModel
 ):
 
     id: int
 
-    subject_code: str
+    request_type: str
 
-    subject_name: str
-
-    semester: int
+    status: str
 
     class Config:
 
